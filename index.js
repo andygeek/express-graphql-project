@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors')
 const { makeExecutableSchema } = require('graphql-tools');
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
@@ -8,6 +9,8 @@ const resolvers = require('./lib/resolvers');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors()) // enable `cors` to set HTTP response header: Access-Control-Allow-Origin: *
 
 // Definiendo el esquema
 const typeDefs = readFileSync(
